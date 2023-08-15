@@ -31,6 +31,10 @@ else:
     time_stamp=int(time_frame[:-8]) #in seconds
     print('seconds')
 
+while(length<time_stamp):
+    with open(location + "/RTTS/{}.txt".format(symbol), 'r') as file:
+        t = file.readlines()
+        length = len(t)
 
 time_frame='{}_seconds'.format(time_stamp)
 
@@ -102,6 +106,13 @@ def animate(i):
     count+=1
 
     y = np.array([])
+
+    # because we are also clearing the data from the text file if it exceeds 960 rows therefore to avoid any error
+    while(length<time_stamp):
+        with open(location + "/RTTS/{}.txt".format(symbol), 'r') as file:
+        t = file.readlines()
+        length = len(t)
+    
     with open(location + '/RTTS/{}.txt'.format(symbol), 'r') as file:
         t = file.readlines()
         print(len(t))
